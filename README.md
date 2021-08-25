@@ -21,7 +21,7 @@ See below for outstanding issues.
 * [Blackboard](#blackboard)
 
 
-##Summary of Issues
+## Summary of Issues
 <table>
    <tr><th>Error</th><th>Explanation</th><th>Example</th></tr>
    <tr>
