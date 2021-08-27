@@ -20,8 +20,13 @@ See below for outstanding issues.
 
 * [Blackboard](#blackboard)
 
+* [Docusign Esignature](#docusign_esignature)
 
-## Summary of Issues
+* [Docusign Click](#docusign_click)
+
+* [Docusign Rooms](#docusign_rooms)
+
+##Summary of Issues
 <table>
    <tr><th>Error</th><th>Explanation</th><th>Example</th></tr>
    <tr>
@@ -232,7 +237,7 @@ The following operations are not supported at this time:
     
 3. Stackoverflow error
     + Circular references are causing stack overflow errors.
-    + Affecting operations:
+    + Affected operations:
         * getServiceIntegration
         * createServiceIntegration
         * updateServiceIntegration
@@ -433,6 +438,13 @@ Documentation: https://developer.blackboard.com/portal/displayApi
 
 Documentation: https://developers.docusign.com/docs/esign-rest-api
 
+### Implementation Notes
+1. If using an OAuth 2.0 Authorization Code grant type, the "Preemptive authentication" option must be checked on.
+2. If using an OAuth 2.0 JWT Bearer Token grant type:
+   1. The public and private key needs to be imported to Boomi as an X509 certificate.
+   2. The expiration field requires an "expires in" value in seconds. Usually that should be 3600.
+   3. The key "scope" with value "signature impersonation" must be added as an "Extended JWT Claim". 
+
 **51 out of 402 endpoints are failing.**
 
 The following operations are not supported at this time:
@@ -551,5 +563,53 @@ The following operations are not supported at this time:
         * UserCustomSettings_DeleteCustomSettings
         * WorkspaceFolder_DeleteWorkspaceItems
 ---
-        
 
+<a name="docusign_click"></a>
+## Docusign Click v2
+
+Documentation: https://developers.docusign.com/docs/click-api/click101
+
+### Implementation Notes
+1. If using an OAuth 2.0 Authorization Code grant type, the "Preemptive authentication" option must be checked on.
+2. If using an OAuth 2.0 JWT Bearer Token grant type:
+   1. The public and private key needs to be imported to Boomi as an X509 certificate.
+   2. The expiration field requires an "expires in" value in seconds. Usually that should be 3600.
+   3. The key "scope" with value "signature impersonation" must be added as an "Extended JWT Claim".
+
+**All 21 endpoints are passing.**
+
+---
+
+<a name="docusign_rooms"></a>
+## Docusign Rooms v2
+
+Documentation: https://developers.docusign.com/docs/rooms-api/rooms101
+
+### Implementation Notes
+1. If using an OAuth 2.0 Authorization Code grant type, the "Preemptive authentication" option must be checked on.
+2. If using an OAuth 2.0 JWT Bearer Token grant type:
+   1. The public and private key needs to be imported to Boomi as an X509 certificate.
+   2. The expiration field requires an "expires in" value in seconds. Usually that should be 3600.
+   3. The key "scope" with value "signature impersonation" must be added as an "Extended JWT Claim".
+
+**4 out of 89 endpoints are failing.**
+
+The following operations are not supported at this time:
+* Fields_GetFieldSet
+* Rooms_GetRoomFieldSet
+* Rooms_AddDocumentToRoomViaFileUpload
+* Rooms_UpdatePicture
+
+### Issues
+1. Stackoverflow error
+   + Circular references are causing stack overflow errors.
+   + Affected operations:
+     * Fields_GetFieldSet
+     * Rooms_GetRoomFieldSet
+2. Schema can't be null
+   + The request body has a content type of form-data. Only JSON request bodies are supported.
+   + Affected operations:
+     * Rooms_AddDocumentToRoomViaFileUpload
+     * Rooms_UpdatePicture
+     
+---
