@@ -56,53 +56,6 @@ See below for outstanding issues.
 
 * [Guru](#guru)
 
-### Skipped APIs
-* **Bitbucket** 
-  * https://api.bitbucket.org/swagger.json
-  * 160 out of 304 endpoints failing (as a 2.0 spec)
-  * Issue converting to OAS3
-* **Github** 
-  * https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/ghes-3.1/ghes-3.1.json
-  * 171 out of 682 endpoints failing
-  * Mostly "Unsupported type: ARRAY" errors
-* **Insightly**
-  * https://api.na1.insightly.com/v3.1/swagger/docs/v3.1
-  * 184 out of 417 endpoints failing
-  * Mostly "Unsupported type: ARRAY" errors
-* **Amdocs MarketOne**
-  * https://api.swaggerhub.com/apis/Amdocs_Media/MarketONE/2021.02.Released
-  * 19 out of 39 endpoints failing
-  * Mostly stackoverflow errors due to circular references
-* **Apache Pulsar Admin**
-  * https://pulsar.apache.org/swagger/master//swagger.json
-  * 131 out of 413 endpoints failing
-  * Various errors
-* **Guru**
-  * https://api.getguru.com/api/v1/swagger.json
-  * 22 out of 54 endpoints failing
-  * Mostly "Unsupported type: ARRAY" errors
-* **Xero Accounting**
-  * https://github.com/XeroAPI/Xero-OpenAPI/blob/master/xero_accounting.yaml
-  * 83 out of 226 endpoints failing
-  * Mostly stackoverflow errors due to circular references
-* **Stripe**
-  * https://github.com/stripe/openapi/blob/master/openapi/spec3.json
-  * 302 out of 384 endpoints failing
-  * Mostly stackoverflow errors due to circular references
-* **Ably**
-  * https://github.com/ably/open-specs/blob/main/definitions/platform-v1.yaml
-  * 21 out of 22 endpoints failing
-  * 20 endpoints failing due to the HTTP status code range issue
-* **EBay**
-  * The majority of EBay APIs were skipped
-  * This is due to the OAUTH2 Authorization Header Issue
-* **Google Analytics Data**
-  * https://github.com/APIs-guru/openapi-directory/blob/main/APIs/googleapis.com/analyticsdata/v1beta/openapi.yaml
-  * 6 out of 7 endpoints failing
-  * Stack overflow errors due to circular references
-* **Postman**
-  * Endpoints failing due to issue: Parameters at path level are ignored.
-
 
 ## Summary of Issues
 
@@ -255,6 +208,55 @@ requestBody:
 responses:
     '2XX':
             </pre>
+
+---
+### Skipped APIs
+* **Bitbucket** 
+  * https://api.bitbucket.org/swagger.json
+  * 160 out of 304 endpoints failing (as a 2.0 spec)
+  * Issue converting to OAS3
+* **Github** 
+  * https://raw.githubusercontent.com/github/rest-api-description/main/descriptions/ghes-3.1/ghes-3.1.json
+  * 171 out of 682 endpoints failing
+  * Mostly "Unsupported type: ARRAY" errors
+* **Insightly**
+  * https://api.na1.insightly.com/v3.1/swagger/docs/v3.1
+  * 184 out of 417 endpoints failing
+  * Mostly "Unsupported type: ARRAY" errors
+* **Amdocs MarketOne**
+  * https://api.swaggerhub.com/apis/Amdocs_Media/MarketONE/2021.02.Released
+  * 19 out of 39 endpoints failing
+  * Mostly stackoverflow errors due to circular references
+* **Apache Pulsar Admin**
+  * https://pulsar.apache.org/swagger/master//swagger.json
+  * 131 out of 413 endpoints failing
+  * Various errors
+* **Guru**
+  * https://api.getguru.com/api/v1/swagger.json
+  * 22 out of 54 endpoints failing
+  * Mostly "Unsupported type: ARRAY" errors
+* **Xero Accounting**
+  * https://github.com/XeroAPI/Xero-OpenAPI/blob/master/xero_accounting.yaml
+  * 83 out of 226 endpoints failing
+  * Mostly stackoverflow errors due to circular references
+* **Stripe**
+  * https://github.com/stripe/openapi/blob/master/openapi/spec3.json
+  * 302 out of 384 endpoints failing
+  * Mostly stackoverflow errors due to circular references
+* **Ably**
+  * https://github.com/ably/open-specs/blob/main/definitions/platform-v1.yaml
+  * 21 out of 22 endpoints failing
+  * 20 endpoints failing due to the HTTP status code range issue
+* **EBay**
+  * The majority of EBay APIs were skipped
+  * This is due to the OAUTH2 Authorization Header Issue
+* **Google Analytics Data**
+  * https://github.com/APIs-guru/openapi-directory/blob/main/APIs/googleapis.com/analyticsdata/v1beta/openapi.yaml
+  * 6 out of 7 endpoints failing
+  * Stack overflow errors due to circular references
+* **Postman**
+  * Endpoints failing due to issue: Parameters at path level are ignored.
+
 
 ---
 <a name="pagerduty"></a>
