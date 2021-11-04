@@ -249,10 +249,8 @@ requestBody:
 9. Status code ranges are not recognized
    1. Priority 3 
    2. 2XX is a valid range definition according to the OpenAPI specification. Boomi is not recognizing this 
-            status code as a successful response.</td>
-        <td>20</td>
-        <td>
-            API: Ably, OperationId: getMessagesByChannel<br>
+            status code as a successful response.
+   3. Example API: Ably, OperationId: getMessagesByChannel<br>
             <pre>
 responses:
     '2XX':
