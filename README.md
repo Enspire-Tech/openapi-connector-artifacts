@@ -1,10 +1,10 @@
 # Boomi OpenAPI Connectors
-These are branded connectors built for the Boomi platform with the Boomi OpenAPI SDK. 
+These are branded connectors built for the Boomi platform with the Boomi OpenAPI SDK.
 You can find each connector's artifacts in their subdirectory.
 See below for outstanding issues.
 
 * [PagerDuty](#pagerduty)
-  
+
 * [Twitter v2](#twitterv2)
 
 * [CircleCI](#circleci)
@@ -63,6 +63,26 @@ See below for outstanding issues.
 
 * [Google People](#google_people) **(ALL ENDPOINTS OPERATIONAL)**
 
+* [Google AdMob](#google_admob) **(ALL ENDPOINTS OPERATIONAL)**
+
+* [Google Android Management](#google_android_management) **(ALL ENDPOINTS OPERATIONAL)**
+
+* [Google App Engine Admin](#google_app_engine_admin) **(ALL ENDPOINTS OPERATIONAL)**
+
+* [Google Artifact Registry](#google_artifact_registry) **(ALL ENDPOINTS OPERATIONAL)**
+
+* [Google Cloud Build](#google_cloud_build) **(ALL ENDPOINTS OPERATIONAL)**
+
+* [Google Classroom](#google_classroom) **(ALL ENDPOINTS OPERATIONAL)**
+
+* [Google Cloud Tasks](#google_cloud_tasks) **(ALL ENDPOINTS OPERATIONAL)**
+
+* [Google Data Fusion](#google_data_fusion) **(ALL ENDPOINTS OPERATIONAL)**
+
+* [Google Data Pipelines](#google_data_pipelines) **(ALL ENDPOINTS OPERATIONAL)**
+
+* [Google Language](#google_language) **(ALL ENDPOINTS OPERATIONAL)**
+
 * [Guru](#guru) **(ALL ENDPOINTS OPERATIONAL)**
 
 * [Vonage Messages](#vonage_messages) **(ALL ENDPOINTS OPERATIONAL)**
@@ -76,7 +96,7 @@ See below for outstanding issues.
 #### Attempted: 52
 #### Skipped: 19
 #### Partially functional: 15
-#### Fully functional: 18
+#### Fully functional: 23
 
 
 1. Unable to create profiles for XML
@@ -92,10 +112,10 @@ responses:
       schema:
         $ref: '#/components/schemas/ApplyEnvironmentManagedActionResult'
 ```
-3. OAUTH2 Authorization Header 
-    * Priority 1 
+3. OAUTH2 Authorization Header
+    * Priority 1
     * Some implementations of OAUTH2 Authorization Code and Client Credentials flows require an authorization
-  header in the access token request. Boomi does not support this. 
+      header in the access token request. Boomi does not support this.
     * Example: EBay Sell Account API
 
 4. Circular Reference Error
@@ -163,9 +183,9 @@ paths:
    "$ref" : "#/components/schemas/TweetID"
  }
 ```
-6. Empty schemas are failing 
+6. Empty schemas are failing
     * Priority 2
-    * The path parameter has no type. It contains an empty schema. Presents as: "Unsupported Parameter Type: null".    
+    * The path parameter has no type. It contains an empty schema. Presents as: "Unsupported Parameter Type: null".
     * Example API: CircleCI, OperationId: getTests
 ```
 "parameters": [
@@ -178,7 +198,7 @@ paths:
    "example": "123"
  },
 ```
-    
+
 7. Non JSON request bodies are not supported.
     * Priority 2
     * The request body has a content type of form-data or octet-stream. Only JSON request bodies are supported. This errors as "Schema can't be null".
@@ -191,7 +211,7 @@ requestBody:
         $ref: '#/components/schemas/FunctionConfig'
   required: false
 ```
-    
+
 8. Unsupported response type of string.
     * Priority 3
     * In the response, the JSON schema type is "string". Errors as "Unsupported type: STRING".
@@ -205,7 +225,7 @@ requestBody:
        "schema" : {
          "type" : "string"
 ```
-9. DELETE requests with a request body are not supported. 
+9. DELETE requests with a request body are not supported.
     * Priority 3
     * According to OpenAPI specifications, GET, DELETE, and HEAD are no longer allowed to have a request body.
     * Example API: Quickbase, OperationId: deleteApp
@@ -234,9 +254,9 @@ requestBody:
      required: false
 ```
 10. Status code ranges are not recognized
-    * Priority 3 
-    * 2XX is a valid range definition according to the OpenAPI specification. Boomi is not recognizing this 
-             status code as a successful response.
+    * Priority 3
+    * 2XX is a valid range definition according to the OpenAPI specification. Boomi is not recognizing this
+      status code as a successful response.
     * Example API: Ably, OperationId: getMessagesByChannel
 ```
 responses:
@@ -265,10 +285,6 @@ responses:
     * https://pulsar.apache.org/swagger/master//swagger.json
     * 131 out of 413 endpoints failing
     * Various errors
-* **Guru**
-    * https://api.getguru.com/api/v1/swagger.json
-    * 22 out of 54 endpoints failing
-    * Mostly "Unsupported type: ARRAY" errors
 * **Xero Accounting**
     * https://github.com/XeroAPI/Xero-OpenAPI/blob/master/xero_accounting.yaml
     * 83 out of 226 endpoints failing
@@ -295,14 +311,14 @@ responses:
 * **Zoom**
     * Path level parameters
 * **Clever**
-    * Basic auth header for auth2 issue
+    * Basic auth header for auth2 issu[e
 * **Firestore**
     * Circular references
 * **Dynamics 365 Business Central**
     * Path level parameters
 * **Vonage SMS**
     * Request body is form content.
-* **Vonage Verify**
+* **Vonage Verify**]()
     * Request body is form content.
 
 ---
@@ -312,22 +328,22 @@ responses:
 **8 out of 193 endpoints are failing.**
 
 ### Issues
-1. Property value is null. 
+1. Property value is null.
     + Schema references to parameter components are not being processed.
-    + Affected operations: 
+    + Affected operations:
         * listEscalationPolicyAuditRecords
         * listSchedulesAuditRecords
         * listServiceAuditRecords
         * listTeamsAuditRecords
         * listUsersAuditRecords
-        
+
 2. Stackoverflow error
     + Circular references are causing stack overflow errors.
     + Affected operations:
         * getServiceIntegration
         * createServiceIntegration
         * updateServiceIntegration
-    
+
 
 ---   
 
@@ -338,16 +354,16 @@ responses:
 
 ### Issues
 1. Unsupported Parameter Type: null
-   + References inside of parameter schemas are not being resolved.
-   + Affected operations:
-      * findTweetById
-      * findUserById
-      * findUserByUsername
+    + References inside of parameter schemas are not being resolved.
+    + Affected operations:
+        * findTweetById
+        * findUserById
+        * findUserByUsername
 2. Unsupported type: STRING
-   + In the response, the schema type is "string".
-   + Affected operation:
-      * getOpenAPISpec   
-   
+    + In the response, the schema type is "string".
+    + Affected operation:
+        * getOpenAPISpec
+
 ---   
 
 <a name="circleci"></a>
@@ -357,13 +373,13 @@ responses:
 
 ### Issues
 1. Unsupported Parameter Type: null
-   + The path parameter has no type. It contains an empty schema. ***"schema": {}***
-   + Affected operations:
-      * getJobArtifacts
-      * getTests
-      * getJobDetails
-      * getPipelineByNumber
-      * getJobDetails
+    + The path parameter has no type. It contains an empty schema. ***"schema": {}***
+    + Affected operations:
+        * getJobArtifacts
+        * getTests
+        * getJobDetails
+        * getPipelineByNumber
+        * getJobDetails
 
 ---   
 
@@ -383,9 +399,9 @@ responses:
 1. DELETE requests should not return a request body.
     + According to OpenAPI specifications, DELETE requests should not include a request body.
     + Affected operations:
-      * deleteApp
-      * deleteFields
-      * deleteRecords
+        * deleteApp
+        * deleteFields
+        * deleteRecords
 
 ---   
 
@@ -396,15 +412,15 @@ responses:
 
 ### Issues
 1. Unsupported type: STRING
-   + The response content type is string, which is not a supported response type.
-   + Affected operations:
-      * listFunctions
+    + The response con`tent type is string, which is not a supported response type.
+    + Affected operations:
+        * listFunctions
 2. Schema can't be null
-   + The request body has a content type of form-data. Only JSON request bodies are supported.
-   + Affected operations:
-     * registerFunction
-     * triggerFunction
-     * updateFunction
+    + The request body has a content type of form-data. Only JSON request bodies are supported.
+    + Affected operations:
+        * registerFunction
+        * triggerFunction
+        * updateFunction`
 
 ---   
 
@@ -417,8 +433,8 @@ responses:
 1. Schema can't be null
     + The request body has a content type of octet-stream. Only JSON request bodies are supported.
     + Affected operations:
-      * /api/v1/aquarius/assets/ddo/encrypt
-      * /api/v1/aquarius/assets/ddo/encryptashex
+        * /api/v1/aquarius/assets/ddo/encrypt
+        * /api/v1/aquarius/assets/ddo/encryptashex
 
 ---
 
@@ -431,8 +447,8 @@ responses:
 1. Unsupported Parameter Type: null
     + The query parameter has no type. It contains an empty schema. ***"schema": {}***
     + Affected operations:
-      * /api/v1/services/compute POST
-      * /api/v1/services/download GET
+        * /api/v1/services/compute POST
+        * /api/v1/services/download GET
 
 --- 
 
@@ -453,28 +469,28 @@ responses:
 1. Property value is null
     + "offlineAttributes" reference not defined in specification.
     + Affected operations:
-      * Envelopes_PostEnvelopes
-      * Recipients_PostRecipients
-      * EnvelopeTransferRules_PostEnvelopeTransferRules
-      * PowerForms_PostPowerForm
-      * Templates_PostTemplates
-      * Recipients_PostTemplateRecipients
-      * Envelopes_PutEnvelope
-      * Documents_PutDocuments
-      * Recipients_PutRecipients
-      * EnvelopeTransferRules_PutEnvelopeTransferRules
-      * EnvelopeTransferRules_PutEnvelopeTransferRule
-      * Folders_PutFolderById
-      * PowerForms_PutPowerForm
-      * Templates_PutTemplate
-      * Documents_PutTemplateDocuments
-      * Documents_PutTemplateDocument
-      * Recipients_PutTemplateRecipients
+        * Envelopes_PostEnvelopes
+        * Recipients_PostRecipients
+        * EnvelopeTransferRules_PostEnvelopeTransferRules
+        * PowerForms_PostPowerForm
+        * Templates_PostTemplates
+        * Recipients_PostTemplateRecipients
+        * Envelopes_PutEnvelope
+        * Documents_PutDocuments
+        * Recipients_PutRecipients
+        * EnvelopeTransferRules_PutEnvelopeTransferRules
+        * EnvelopeTransferRules_PutEnvelopeTransferRule
+        * Folders_PutFolderById
+        * PowerForms_PutPowerForm
+        * Templates_PutTemplate
+        * Documents_PutTemplateDocuments
+        * Documents_PutTemplateDocument
+        * Recipients_PutTemplateRecipients
 2. Schema can't be null
     + Response body is a binary type. Boomi only supports JSON response bodies at this time.
     + Affected operations:
-      * BrandLogo_PutBrandLogo
-      * BrandResources_PutBrandResources
+        * BrandLogo_PutBrandLogo
+        * BrandResources_PutBrandResources
 3. DELETE requests should not return a request body.
     + According to OpenAPI specifications, DELETE requests should not include a request body.
     + Affected operations:
@@ -526,16 +542,16 @@ responses:
 
 ### Issues
 1. Stackoverflow error
-   + Circular references are causing stack overflow errors.
-   + Affected operations:
-     * Fields_GetFieldSet
-     * Rooms_GetRoomFieldSet
+    + Circular references are causing stack overflow errors.
+    + Affected operations:
+        * Fields_GetFieldSet
+        * Rooms_GetRoomFieldSet
 2. Schema can't be null
-   + The request body has a content type of form-data. Only JSON request bodies are supported.
-   + Affected operations:
-     * Rooms_AddDocumentToRoomViaFileUpload
-     * Rooms_UpdatePicture
-     
+    + The request body has a content type of form-data. Only JSON request bodies are supported.
+    + Affected operations:
+        * Rooms_AddDocumentToRoomViaFileUpload
+        * Rooms_UpdatePicture
+
 ---
 
 <a name="xero_assets"></a>
@@ -545,9 +561,9 @@ responses:
 
 ### Issues
 1. Unsupported Parameter Type: null
-   + References are not followed when validating parameter schema type.
-   + Affected operations:
-     + getAssets
+    + References are not followed when validating parameter schema type.
+    + Affected operations:
+        + getAssets
 
 ---
 
@@ -558,10 +574,10 @@ responses:
 
 ### Issues
 1. Schema can't be null
-   + The request body has a content type of form-data. Only JSON request bodies are supported.
-   + Affected operations:
-      + uploadFile
-      + uploadFileToFolder
+    + The request body has a content type of form-data. Only JSON request bodies are supported.
+    + Affected operations:
+        + uploadFile
+        + uploadFileToFolder
 
 ---
 
@@ -572,9 +588,9 @@ responses:
 
 ### Issues
 1. Unsupported Parameter Type: null
-   + References are not followed when validating parameter schema type.
-   + Affected operations:
-      + getTasks
+    + References are not followed when validating parameter schema type.
+    + Affected operations:
+        + getTasks
 
 ---
 
@@ -583,12 +599,6 @@ responses:
 
 **All endpoints are working.**
 
-### Issues
-1. Unsupported type:ARRAY
-   + Responses with a schema type of array are not supported.
-   + Affected operations:
-      + createEmployeeOpeningBalances
-      + createMultipleEmployeeEarningsTemplate
 ---
 
 <a name="xero_payroll_uk"></a>
@@ -607,12 +617,12 @@ responses:
 1. Schema can't be null
     + The request body has a content type of "multipart/form-data"
     + Affected operations:
-      * /apps/{id}/pkcs12
+        * /apps/{id}/pkcs12
 
 ---
 
 <a name="ebay_browse"></a>
-## EBay Buy Browse 
+## EBay Buy Browse
 
 **All 11 endpoints are passing.**
 
